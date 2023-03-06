@@ -1,0 +1,44 @@
+mutation SignUp($createUserInput: CreateUserInput!) {
+  signUp(createUserInput: $createUserInput) {
+    name
+    email
+    password
+    createdAt
+    updatedAt
+  }
+}
+
+mutation SignIn($user: SignInUserInput!) {
+  signIn(user: $user) {
+    accesstoken
+    response {
+      status
+      message
+    }
+  }
+}
+
+mutation CreatePosts($createPostDto: CreatePostDto!) {
+  createPosts(createPostDto: $createPostDto) {
+     post{
+      id
+      title
+      text
+      userId
+    }
+    response{
+      message
+      error
+      error
+    }
+  }
+}
+
+mutation CreateComment($createCommentDto: CreateCommentDto!){
+  createComment(createCommentDto:$createCommentDto){
+    id,
+    text,
+    userId,
+    postsId
+  }
+}

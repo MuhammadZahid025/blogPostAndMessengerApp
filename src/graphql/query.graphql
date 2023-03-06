@@ -1,0 +1,98 @@
+query FindAllPosts($paginationInput: PaginateInput!) {
+  findAllPosts(paginationInput: $paginationInput) {
+    items {
+      comments {
+        id
+        createdAt
+        parentId
+        postsId
+        replyCount
+        text
+        updatedAt
+        user {
+          createdAt
+          email
+          name
+          password
+        }
+        userId
+      }
+      createdAt
+      id
+      text
+      title
+      updatedAt
+      user {
+        createdAt
+        email
+        name
+        password
+        roles
+        updatedAt
+      }
+      userId
+    }
+    total
+  }
+}
+
+query FindPostById($id: Float!) {
+  findPostById(id: $id) {
+    response {
+      message
+      status
+    }
+    post {
+      id
+      title
+      text
+      createdAt
+      updatedAt
+      comments {
+        id
+        text
+        userId
+        parentId
+        createdAt
+        updatedAt
+        replyCount
+        user {
+          name
+        }
+      }
+      user {
+        name
+        email
+      }
+    }
+  }
+}
+
+query FindRepliesWithCommentId($commentId: Float!) {
+  replies(commentId: $commentId) {
+    id
+    text
+    userId
+    postsId
+    createdAt
+    replyCount
+    updatedAt
+    replyCount
+    user {
+      name
+    }
+  }
+}
+
+query GetPosts($search: String!) {
+  getPosts(search: $search) {
+    id
+    text
+    userId
+    title
+    createdAt
+    user {
+      name
+    }
+  }
+}
